@@ -2,6 +2,7 @@ package com.wozu.blog.user
 
 import org.springframework.web.bind.annotation.*
 
+
 @CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("api/users")
