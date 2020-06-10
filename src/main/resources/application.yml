@@ -5,6 +5,6 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     #Remember to change username and password to your pgadmin 4 username and password
-    url: "jdbc:postgresql://localhost:5432/customer_db"
+    url: "jdbc:postgresql://localhost:5432/woz_u_blog"
     username: postgres
     password: password123
