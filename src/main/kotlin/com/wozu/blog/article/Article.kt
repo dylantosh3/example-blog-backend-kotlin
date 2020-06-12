@@ -7,8 +7,6 @@ import javax.persistence.*
 data class Article (
         @Id @GeneratedValue(strategy = GenerationType.AUTO)
         var id: Long = 0,
-        @OneToMany(mappedBy = "article", cascade = [CascadeType.ALL], fetch = FetchType.EAGER)
-        var comment: List<Comment> = emptyList(),
         var slug: String = "",
         var title: String = "",
         var description: String = "",

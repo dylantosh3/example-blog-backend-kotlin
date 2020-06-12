@@ -7,8 +7,6 @@ import javax.persistence.*
 data class Users(
         @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
         var id: Long = 0,
-        @OneToMany(mappedBy = "author", cascade= [CascadeType.ALL], fetch = FetchType.EAGER)
-        var comment: List<Comment> = emptyList(),
         var firstName: String = "",
         var lastName: String = "",
         var userName: String = "",
