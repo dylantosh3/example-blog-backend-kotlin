@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin(maxAge = 3600)
 @RestController
 @RequestMapping("api/articles")
+
 class ArticleController(val articleRepository: ArticleRepository) {
 
     @GetMapping

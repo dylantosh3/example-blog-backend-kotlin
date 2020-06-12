@@ -1,16 +1,18 @@
 package com.wozu.blog.comment
 
+import com.wozu.blog.user.Users
+import com.wozu.blog.article.Article
 import javax.persistence.*
 
 @Entity
-class Comment(     //var createdAt: OffsetDateTime = OffsetDateTime.now(),
-                   //var updatedAt: OffsetDateTime = OffsetDateTime.now(),
-                   var body: String,
-                   var article: Long,
-                   var author: String,
-//                   @ManyToOne
-//                   var article: Article = Article(),
-//                   @ManyToOne
-//                   var author: User = User(),
+data class Comment(     var body: String,
+                   @ManyToOne(fetch = FetchType.EAGER)
+                   @JoinColumn(name = "article_id")
+                   var article: Article = Article(),
+                   @ManyToOne(fetch = FetchType.EAGER)
+                   @JoinColumn(name = "users_id")
+                   var author: Users = Users(),
                    @Id @GeneratedValue(strategy = GenerationType.AUTO)
-                   var id: Long = 0)
+                   var id: Long = 0
+)
+
