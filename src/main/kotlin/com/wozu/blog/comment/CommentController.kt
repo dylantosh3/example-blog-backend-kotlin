@@ -9,24 +9,24 @@ import org.springframework.web.bind.annotation.*
 class CommentController(val commentRepository: CommentRepository) {
 
     @GetMapping
-    fun getComment() = commentRepository.findAll()
+    fun getComments() = commentRepository.findAll()
 
     @GetMapping("/{id}")
-    fun getComment(@PathVariable id: Long)
+    fun getComments(@PathVariable id: Long)
             = commentRepository.findById(id)
 
     @PostMapping
-    fun addComment(@RequestBody comment: Comment)
-            = commentRepository.save(comment)
+    fun addComments(@RequestBody comments: Comments)
+            = commentRepository.save(comments)
 
     @PutMapping("/{id}")
-    fun editComment(@PathVariable id: Long, @RequestBody comment: Comment) {
-        assert(comment.id == id)
-        commentRepository.save(comment)
+    fun editComments(@PathVariable id: Long, @RequestBody comments: Comments) {
+        assert(comments.id == id)
+        commentRepository.save(comments)
     }
 
     @DeleteMapping("/{id}")
-    fun deleteComment(@PathVariable id: Long)
+    fun deleteComments(@PathVariable id: Long)
             =  commentRepository.deleteById(id)
 
 }

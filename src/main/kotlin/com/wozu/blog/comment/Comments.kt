@@ -5,12 +5,11 @@ import com.wozu.blog.article.Article
 import javax.persistence.*
 
 @Entity
-data class Comment(     var body: String,
-                   @ManyToOne(fetch = FetchType.EAGER)
-                   @JoinColumn(name = "article_id")
+data class Comments(
+        var body: String,
+                   @ManyToOne(cascade = arrayOf(CascadeType.ALL))
                    var article: Article = Article(),
-                   @ManyToOne(fetch = FetchType.EAGER)
-                   @JoinColumn(name = "users_id")
+                   @ManyToOne(cascade = arrayOf(CascadeType.ALL))
                    var author: Users = Users(),
                    @Id @GeneratedValue(strategy = GenerationType.AUTO)
                    var id: Long = 0
