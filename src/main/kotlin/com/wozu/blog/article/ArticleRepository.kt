@@ -2,4 +2,4 @@ package com.wozu.blog.article
 
 import org.springframework.data.jpa.repository.JpaRepository
 
-interface ArticleRepository : JpaRepository<Article, Long>
+interface ArticleRepository : JpaRepository<Articles, Long>

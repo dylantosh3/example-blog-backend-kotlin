@@ -2,31 +2,37 @@ package com.wozu.blog.comment
 
 import org.springframework.web.bind.annotation.*
 
-
 @CrossOrigin(maxAge = 3600)
 @RestController
-@RequestMapping("api/comment")
+@RequestMapping("api/comments")
 class CommentController(val commentRepository: CommentRepository) {
 
+    //READ ALL COMMENTS ON ARTICLE ---- EVERYONE
     @GetMapping
-    fun getComment() = commentRepository.findAll()
+    fun getComments() = commentRepository.findAll()
 
+    //READ 1 COMMENT IN ARTICLE ---- EVERYONE
     @GetMapping("/{id}")
-    fun getComment(@PathVariable id: Long)
-            = commentRepository.findById(id)
+    fun getComment(@PathVariable id: Long) = commentRepository.findById(id)
 
+    //CREATE 1 comment based on articlesid ---- EVERYONE
     @PostMapping
-    fun addComment(@RequestBody comment: Comment)
-            = commentRepository.save(comment)
+    fun addCommentToArticle(@RequestBody comment: Comments) = commentRepository.save(comment)
 
+    //UPDATE 1 comment based on articlesid ---- EVERYONE EXCEPT VISITOR
     @PutMapping("/{id}")
-    fun editComment(@PathVariable id: Long, @RequestBody comment: Comment) {
-        assert(comment.id == id)
-        commentRepository.save(comment)
+    fun editArticleComment(@PathVariable id: Long, @RequestBody comments: Comments){
+        if(comments.commentsid == id)
+            commentRepository.save(comments)
     }
 
+    //DELETE 1 comment based on commentsid ---- EVERYONE EXCEPT VISITOR
     @DeleteMapping("/{id}")
-    fun deleteComment(@PathVariable id: Long)
-            =  commentRepository.deleteById(id)
+    fun deleteComment(@PathVariable id: Long, @RequestBody comments: Comments){
+        if (comments.commentsid == id)
+            commentRepository.save(comments)
+    }
 
 }
+
+
