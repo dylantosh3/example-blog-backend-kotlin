@@ -7,14 +7,9 @@ import javax.persistence.*
 data class Articles (
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        var articlesid: Long = 0,
-        @GeneratedValue(strategy = GenerationType.IDENTITY)
-        var usersid: Long = 0,
+        var id: Long = 0,
         var title: String = "",
-        var author: String = "",
+        var username: String = "",
         var description: String = "",
         var body: String = ""
-        //var createdAt: OffsetDateTime = OffsetDateTime.now(),
 )
-
-

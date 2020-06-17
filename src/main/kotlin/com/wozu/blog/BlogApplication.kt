@@ -17,7 +17,7 @@ class BlogApplication {
         val source = UrlBasedCorsConfigurationSource()
         val config = CorsConfiguration()
         config.allowCredentials = true
-        config.allowedOrigins = listOf("http://localhost:4200")
+        config.allowedOrigins = listOf("http://localhost:4200", "http://localhost:3000")
         config.allowedMethods = listOf("*")
         config.allowedHeaders = listOf("*")
         source.registerCorsConfiguration("/**", config)

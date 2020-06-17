@@ -11,7 +11,7 @@ class ArticleController(val articleRepository: ArticleRepository) {
     @GetMapping
     fun getArticles() = articleRepository.findAll()
 
-    //READ ARTICLE BY ID ---- ADMIN + PAID MEMBER + MEMBER + VISITOR (some hidden behind login wall)
+    //READ ARTICLE BY ID ---- ADMIN + PAID MEMBER + MEMBER + VISITOR
     @GetMapping("/{id}")
     fun getArticle(@PathVariable id: Long) = articleRepository.findById(id)
 
@@ -22,14 +22,12 @@ class ArticleController(val articleRepository: ArticleRepository) {
     //UPDATE ARTICLE BY ID ---- ADMIN + PAID MEMBER + MEMBER
     @PutMapping("/{id}")
     fun editArticle(@PathVariable id: Long, @RequestBody articles: Articles) {
-        if(articles.articlesid == id)
+        if(articles.id == id)
             articleRepository.save(articles)
     }
 
     //DELETE ARTICLE BY ID ---- ADMIN + PAID MEMBER + MEMBER
     @DeleteMapping("/{id}")
-    fun deleteArticle(@PathVariable id: Long, @RequestBody articles: Articles){
-        if(articles.articlesid == id)
-            articleRepository.deleteById(id)
-    }
+    fun deleteArticle(@PathVariable id: Long) = articleRepository.deleteById(id)
+
 }

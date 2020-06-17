@@ -22,14 +22,12 @@ class UserController(val userRepository: UserRepository) {
     //UPDATE USER ---- ADMIN + PAID MEMBER + MEMBER
     @PutMapping("/{id}")
     fun editUser(@PathVariable id: Long, @RequestBody user: Users) {
-        if(user.usersid == id)
+        if(user.id == id)
             userRepository.save(user)
     }
 
     //DELETE USER ---- ADMIN + PAID MEMBER + MEMBER
     @DeleteMapping("/{id}")
-    fun deleteUser(@PathVariable id: Long, @RequestBody user: Users){
-        if(user.usersid == id)
-            userRepository.deleteById(id)
-    }
+    fun deleteUser(@PathVariable id: Long) = userRepository.deleteById(id)
+
 }

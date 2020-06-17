@@ -15,24 +15,19 @@ class CommentController(val commentRepository: CommentRepository) {
     @GetMapping("/{id}")
     fun getComment(@PathVariable id: Long) = commentRepository.findById(id)
 
-    //CREATE 1 comment based on articlesid ---- EVERYONE
+    //CREATE 1 COMMENT ---- EVERYONE
     @PostMapping
     fun addCommentToArticle(@RequestBody comment: Comments) = commentRepository.save(comment)
 
-    //UPDATE 1 comment based on articlesid ---- EVERYONE EXCEPT VISITOR
+    //UPDATE 1 COMMENT ---- EVERYONE EXCEPT VISITOR
     @PutMapping("/{id}")
     fun editArticleComment(@PathVariable id: Long, @RequestBody comments: Comments){
-        if(comments.commentsid == id)
+        if(comments.id == id)
             commentRepository.save(comments)
     }
 
-    //DELETE 1 comment based on commentsid ---- EVERYONE EXCEPT VISITOR
+    //DELETE 1 COMMENT ---- EVERYONE EXCEPT VISITOR
     @DeleteMapping("/{id}")
-    fun deleteComment(@PathVariable id: Long, @RequestBody comments: Comments){
-        if (comments.commentsid == id)
-            commentRepository.save(comments)
-    }
+    fun deleteComment(@PathVariable id: Long) = commentRepository.deleteById(id)
 
 }
-
-
